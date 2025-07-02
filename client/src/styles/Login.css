@@ -1,0 +1,115 @@
+.login-section {
+  background: linear-gradient(120deg, #e3eafc 60%, #c7f0e8 100%);
+  border-radius: 0 0 32px 32px;
+  box-shadow: 0 2px 12px #b6c2d133;
+  padding: 2.5rem 2.5rem 2rem 2.5rem;
+  max-width: 1400px;
+  width: 100%;
+  margin: 1.5rem auto 0 auto;
+  color: #2d4059;
+  animation: fadeIn 0.8s;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch; /* Ensures children stretch to same height */
+  justify-content: center;
+  gap: 2.5rem;
+  min-height: 480px;
+}
+
+.login-card,
+.register-card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 2px 12px #b6c2d122;
+  padding: 2rem 2rem 1.5rem 2rem;
+  flex: 1 1 420px;
+  max-width: 480px;
+  min-width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  height: 100%;           /* Make both cards fill the parent's height */
+  min-height: 420px;      /* Optional: ensure a minimum height */
+}
+
+.login-card h2,
+.register-card h2 {
+  color: #22577a;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.login-form,
+.register-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.login-form label,
+.register-form label {
+  display: flex;
+  flex-direction: column;
+  color: #35516c;
+  font-size: 1.1rem;
+  gap: 0.4rem;
+}
+
+.login-form input,
+.register-form input {
+  padding: 0.7rem 1rem;
+  border: 1.5px solid #90caf9;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: #f6fafd;
+  margin-top: 0.2rem;
+  transition: border 0.2s;
+}
+
+.login-form input:focus,
+.register-form input:focus {
+  border: 1.5px solid #42a5f5;
+  outline: none;
+}
+
+.login-form button,
+.register-form button {
+  padding: 0.8rem 0;
+  background: linear-gradient(90deg, #42a5f5 60%, #00bcd4 100%);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.login-form button:hover,
+.register-form button:hover {
+  background: linear-gradient(90deg, #00bcd4 60%, #42a5f5 100%);
+  transform: translateY(-2px) scale(1.03);
+}
+
+@media (max-width: 1100px) {
+  .login-section {
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+  }
+  .login-card,
+  .register-card {
+    max-width: 98vw;
+    width: 100%;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px);}
+  to { opacity: 1; transform: translateY(0);}
+}
