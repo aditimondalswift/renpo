@@ -1,39 +1,36 @@
 import { useState } from 'react'
 import '../styles/App.css'
+import Header from '../components/Header'
 import About from './About'
 import Login from './Login'
-import Register from './Register' // <-- Add this
+import Register from './Register'
 
 function App() {
   const [page, setPage] = useState<'home' | 'about' | 'login' | 'register'>('home')
 
   return (
     <div className="app-container">
-      <header>
-        <h1>🤝 BridgeBuds</h1>
-        <p className="tagline">Connecting Generations, Creating Memories</p>
-        <nav>
-          <button onClick={() => setPage('home')}>Home</button>
-          <button onClick={() => setPage('about')}>About</button>
-          <button onClick={() => setPage('login')}>Login</button>
-        </nav>
-      </header>
+      <Header
+        onNav={p => setPage(p)}
+        active={page === 'register' ? 'login' : page}
+      />
       <main>
         {page === 'home' && (
           <section className="hero-section">
             <span className="welcome-badge">Welcome</span>
-            <h2>Welcome to BridgeBuds!</h2>
+            <h2>Welcome to CareLink!</h2>
             <p>
-              BridgeBuds is a safe, fun platform where seniors and children connect through shared activities, stories, and learning.
+              CareLink connects families with trusted care centers and professional nurses for home and medical support.
             </p>
             <div className="divider"></div>
             <ul className="features-list">
-              <li><span className="emoji">👵</span> Senior & <span className="emoji">👧</span> Child Profiles</li>
-              <li><span className="emoji">💬</span> Activity Matching</li>
-              <li><span className="emoji">📅</span> Companion Calendar</li>
-              <li><span className="emoji">🎥</span> Safe Video Chat</li>
-              <li><span className="emoji">🏆</span> Bonding Badges</li>
-              <li><span className="emoji">🛡️</span> Safety & Moderation</li>
+              <li><span className="emoji">🏢</span> <strong>Care Center Dashboard</strong></li>
+              <li><span className="emoji">👩‍⚕️</span> <strong>Nurse Profiles</strong></li>
+              <li><span className="emoji">🏠</span> <strong>Family Portal</strong></li>
+              <li><span className="emoji">📅</span> <strong>Booking & Scheduler</strong></li>
+              <li><span className="emoji">💬</span> <strong>In-app Messaging</strong></li>
+              <li><span className="emoji">✅</span> <strong>KYC & Reviews</strong></li>
+              <li><span className="emoji">📍</span> <strong>Geo-Based Matching</strong></li>
             </ul>
           </section>
         )}
