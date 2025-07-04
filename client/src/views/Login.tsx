@@ -1,44 +1,50 @@
-import '../styles/Login.css';
+import { useState } from 'react';
+import Register from './Register';
 
-const Login = ({ onRegister }: { onRegister: () => void }) => (
-  <section className="login-section">
-    <div className="login-card">
-      <h2>Login</h2>
-      <form className="login-form">
-        <label>
-          Email
-          <input type="email" placeholder="Enter your email" required />
-        </label>
-        <label>
-          Password
-          <input type="password" placeholder="Enter your password" required />
-        </label>
-        <button type="submit">Login</button>
-      </form>
-    </div>
-    <div className="register-card">
-      <h2>Register</h2>
-      <form className="register-form" onSubmit={e => { e.preventDefault(); onRegister(); }}>
-        <label>
-          Name
-          <input type="text" placeholder="Your name" required />
-        </label>
-        <label>
-          Email
-          <input type="email" placeholder="Your email" required />
-        </label>
-        <label>
-          Password
-          <input type="password" placeholder="Create a password" required />
-        </label>
-        <label>
-          Confirm Password
-          <input type="password" placeholder="Confirm password" required />
-        </label>
-        <button type="submit">Register</button>
-      </form>
-    </div>
-  </section>
-);
+const Login = ({ }: { onRegister?: () => void }) => {
+
+  const [showRegister, setShowRegister] = useState(false);
+
+  const handleRegisterClick = () => {
+    setShowRegister(true);
+  };
+
+  if (showRegister) {
+    return <Register />;
+  }
+
+  return (
+    <section className="login-section">
+      <div className="auth-card improved-auth-card">
+        <div className="auth-header">
+          <h2>Login</h2>
+        </div>
+        <div className="auth-body">
+          <form className="login-form improved-form" onSubmit={e => e.preventDefault()}>
+            <div className="form-group">
+              <label htmlFor="login-email">Email5</label>
+              <input id="login-email" type="email" placeholder="Enter your email" required />
+            </div>
+            <div className="form-group">
+              <label htmlFor="login-password">Password</label>
+              <input id="login-password" type="password" placeholder="Enter your password" required />
+            </div>
+            <button className="primary-btn" type="submit">Login</button>
+            <div className="switch-link">
+              <span>Don't have an account?</span>
+              <button
+                type="button"
+                className="link-btn"
+                onClick={handleRegisterClick}
+              >
+                Register
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  );
+};
 
 export default Login;

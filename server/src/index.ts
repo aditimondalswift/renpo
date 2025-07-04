@@ -1,5 +1,6 @@
 import express from 'express';
 import { Pool } from 'pg';
+import cors from 'cors';
 import { AppDataSource } from './config/db';
 import userRoutes from './routes/userRoutes';
 
@@ -7,7 +8,7 @@ const app = express();
 app.use(express.json());
 
 const PORT = 5000;
-
+app.use(cors());
 app.use("/users", userRoutes);
 
 AppDataSource.initialize()
