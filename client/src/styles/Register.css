@@ -44,6 +44,7 @@
   background: #f6fafd;
   margin-top: 0.2rem;
   transition: border 0.2s;
+  color: #000; /* Make input text black */
 }
 
 .register-form input:focus {

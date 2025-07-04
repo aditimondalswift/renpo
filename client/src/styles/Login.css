@@ -68,6 +68,7 @@
   background: #f6fafd;
   margin-top: 0.2rem;
   transition: border 0.2s;
+  color: #000; /* Make input text black */
 }
 
 .login-form input:focus,
@@ -80,7 +81,7 @@
 .register-form button {
   padding: 0.8rem 0;
   background: linear-gradient(90deg, #42a5f5 60%, #00bcd4 100%);
-  color: #fff;
+  color: #000;
   border: none;
   border-radius: 8px;
   font-size: 1.1rem;
