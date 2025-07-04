@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import '../styles/Register.css'; 
 import Login from './Login';
 const Register = () => {
@@ -14,42 +14,6 @@ const Register = () => {
   if (showLogin) {
     return <Login />;
   }
-
-  // const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-  //   console.log('Form submission started');
-  //   event.preventDefault();
-
-  //   if (password !== confirmPassword) {
-  //     console.log('Password mismatch');
-  //     alert('Passwords do not match');
-  //     return;
-  //   }
-
-  //   try {
-  //     console.log('Sending user data to server');
-  //     const response = await fetch('/users', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify({
-  //         name,
-  //         email,
-  //         password,
-  //       }),
-  //     });
-
-  //     const data = await response.json();
-
-  //     console.log('Server response:', data);
-  //     // Handle successful registration
-  //   } catch (error) {
-  //     console.error('Error occurred during registration:', error);
-  //     // Handle registration error
-  //   }
-  //   console.log('Form submission ended');
-  // };
-
     const handleSubmit = async () => {
     console.log('Form submission started');
     if (password !== confirmPassword) {
@@ -93,15 +57,19 @@ const Register = () => {
           <form className="login-form improved-form" onSubmit={e => e.preventDefault()}>
             <div className="form-group">
               <label htmlFor="login-name">Name</label>
-              <input id="login-name" type="text" placeholder="Enter your name" required />
+              <input id="login-name" type="text" placeholder="Enter your name" onChange={(e) => setName(e.target.value)} value={name} required />
+            </div>
+            <div className="form-group">
+              <label htmlFor="login-name">Email</label>
+              <input id="login-email" type="email" placeholder="Enter your email" onChange={(e) => setEmail(e.target.value)} value={email} required />
             </div>
             <div className="form-group">
               <label htmlFor="login-password">Password</label>
-              <input id="login-password" type="password" placeholder="Enter your password" required />
+              <input id="login-password" type="password" placeholder="Enter your password" onChange={(e) => setPassword(e.target.value)} value={password} required />
             </div>
             <div className="form-group">
               <label htmlFor="login-confirm-password">Confirm Password</label>
-              <input id="login-confirm-password" type="password" placeholder="Enter your password again" required />
+              <input id="login-confirm-password" type="password" placeholder="Enter your password again" onChange={(e) => setConfirmPassword(e.target.value)} required />
             </div>
             <button className="primary-btn" type="button" onClick={handleSubmit}>Register</button>
             <div className="switch-link">
