@@ -4,9 +4,10 @@ import Header from '../components/Header'
 import About from './About'
 import Login from './Login'
 import Register from './Register'
+import Dashboard from './Dashboard'
 
 function App() {
-  const [page, setPage] = useState<'home' | 'about' | 'login' | 'register'>('home')
+  const [page, setPage] = useState<'home' | 'about' | 'login' | 'register' | 'dashboard'>('home')
 
   return (
     <div className="app-container">
@@ -38,11 +39,14 @@ function App() {
           <About />
         )}
         {page === 'login' && (
-          <Login onRegister={() => setPage('register')} />
+          <Login onRegister={() => setPage('register')} onSuccess={() => setPage('dashboard')} />
         )}
         {page === 'register' && (
-          <Register />
+          <Register onLogin={() => setPage('login')} onSuccess={() => setPage('dashboard')} />
         )}
+        {page === 'dashboard' && 
+          <Dashboard />
+        }
       </main>
       <div className="end-card-footer">
         Made with <span className="emoji">💚</span> for every generation

@@ -1,20 +1,17 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import './../styles/Register.css';
-import Login from './Login';
-import Dashboard from './Dashboard';
-const Register = () => {
+
+interface RegisterProps {
+  onSuccess: () => void;
+  onLogin: () => void;
+}
+
+const Register: React.FC<RegisterProps> = ({onSuccess, onLogin}) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-
-  const [showLogin, setShowlogin] = useState(false);
-  const handleLoginClick = () => {
-    setShowlogin(true);
-  };
-  if (showLogin) {
-    return <Login />;
-  }
+ 
     const handleSubmit = async () => {
     console.log('Form submission started');
     if (password !== confirmPassword) {
@@ -43,7 +40,7 @@ const Register = () => {
       console.log(response.status);
       if(response.status === 201) {
         console.log('User registered successfully');
-        return <Dashboard />;
+        onSuccess(); // Call the onSuccess callback to navigate to the dashboard
       }
       // Handle successful registration
     } catch (error) {
@@ -83,7 +80,7 @@ const Register = () => {
               <button
                 type="button"
                 className="link-btn"
-                onClick={handleLoginClick}
+                onClick={onLogin}
               >
                 Login
               </button>

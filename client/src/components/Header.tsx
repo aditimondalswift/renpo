@@ -1,8 +1,8 @@
 import '../styles/Header.css'
 
 type HeaderProps = {
-  onNav: (page: 'home' | 'about' | 'login') => void
-  active: 'home' | 'about' | 'login'
+  onNav: (page: 'home' | 'about' | 'login' | 'register' | 'dashboard') => void
+  active: 'home' | 'about' | 'login' | 'register' | 'dashboard'
 }
 
 const Header = ({ onNav, active }: HeaderProps) => (
