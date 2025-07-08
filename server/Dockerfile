@@ -14,4 +14,4 @@ RUN npm install
 COPY . .
 
 EXPOSE 5000
-CMD ["nodemon", "src/index.js"]
+CMD ["nodemon", "src/index.ts"]

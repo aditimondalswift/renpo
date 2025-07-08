@@ -50,7 +50,7 @@ services:
     volumes:
       - ./server:/app
       - /app/node_modules  # Prevents overwriting node_modules
-    command: nodemon src/index.js
+    command: nodemon src/index.ts
 
   client:
     build: ./client
