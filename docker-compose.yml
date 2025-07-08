@@ -38,6 +38,10 @@ services:
       - backend
     ports:
       - "5000:5000"
+    volumes:
+      - ./server:/app
+      - /app/node_modules  # Prevents overwriting node_modules
+    command: nodemon src/index.js
 
   client:
     build: ./client
@@ -49,9 +53,16 @@ services:
       - "5173:5173"
     environment:
       VITE_HOST: "0.0.0.0"
+    volumes:
+      - ./client:/app
+      - /app/node_modules  # Prevents overwriting node_modules
+    command: npm run dev
 
 volumes:
   pgdata:
+
+    
+
 
 networks:
   backend:

@@ -1,14 +1,17 @@
-FROM node:20-alpine
+FROM node:18
 
 WORKDIR /app
+
+# Disable strict SSL temporarily
+RUN npm config set strict-ssl false
+
+# Install nodemon globally
+RUN npm install -g nodemon
 
 COPY package*.json ./
 RUN npm install
 
 COPY . .
 
-RUN npm run build
-
 EXPOSE 5000
-
-CMD ["npm", "start"]
+CMD ["nodemon", "src/index.js"]
