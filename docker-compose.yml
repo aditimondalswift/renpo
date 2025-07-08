@@ -2,38 +2,47 @@ services:
   postgres:
     image: postgres:17.5
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: mydb
+      POSTGRES_USER: ${PGUSER}
+      POSTGRES_PASSWORD: ${PGPASSWORD}
+      POSTGRES_DB: ${PGDATABASE}
     volumes:
       - pgdata:/var/lib/postgresql/data
     networks:
       - backend
     ports:
-      - "5432:5432"
+      - "${POSTGRES_PORT}:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${PGUSER} -d ${PGDATABASE}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
 
   pgadmin:
     image: dpage/pgadmin4:9.0
     environment:
-      PGADMIN_DEFAULT_EMAIL: admin@admin.com
-      PGADMIN_DEFAULT_PASSWORD: admin
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
     networks:
       - backend
     ports:
-      - "8080:80"
+      - "${PGADMIN_PORT}:80"
 
   server:
     build: ./server
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
     environment:
       PGHOST: postgres
-      PGUSER: postgres
-      PGPASSWORD: postgres
-      PGDATABASE: mydb
-      PGPORT: 5432
+      PGUSER: ${PGUSER}
+      PGPASSWORD: ${PGPASSWORD}
+      PGDATABASE: ${PGDATABASE}
+      PGPORT: ${PGPORT}
+      SERVER_PORT: ${SERVER_PORT}
     networks:
       - backend
     ports:
@@ -50,7 +59,7 @@ services:
     networks:
       - backend
     ports:
-      - "5173:5173"
+      - "${CLIENT_PORT_HOST}:5173"
     environment:
       VITE_HOST: "0.0.0.0"
     volumes:
