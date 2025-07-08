@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import './../styles/Login.css';
 import Register from './Register';
 
 const Login = ({ }: { onRegister?: () => void }) => {
@@ -22,7 +23,7 @@ const Login = ({ }: { onRegister?: () => void }) => {
         <div className="auth-body">
           <form className="login-form improved-form" onSubmit={e => e.preventDefault()}>
             <div className="form-group">
-              <label htmlFor="login-email">Email5</label>
+              <label htmlFor="login-email">Email</label>
               <input id="login-email" type="email" placeholder="Enter your email" required />
             </div>
             <div className="form-group">

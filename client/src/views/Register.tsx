@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import '../styles/Register.css'; 
+import './../styles/Register.css';
 import Login from './Login';
+import Dashboard from './Dashboard';
 const Register = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -39,6 +40,11 @@ const Register = () => {
       const data = await response.json();
 
       console.log('Server response:', data);
+      console.log(response.status);
+      if(response.status === 201) {
+        console.log('User registered successfully');
+        return <Dashboard />;
+      }
       // Handle successful registration
     } catch (error) {
       console.error('Error occurred during registration:', error);
