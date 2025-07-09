@@ -33,7 +33,7 @@ const Login = ({ onFlip }: LoginProps) => {
   };
 
   return (
-    <div className="auth-main-bg login-bg-gradient">
+    <div>
       <div className="auth-container no-image">
         <div className="auth-form-panel">
           <h2>CareLink Portal Login</h2>

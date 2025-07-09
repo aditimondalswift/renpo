@@ -27,16 +27,17 @@ function App() {
               <li><span className="emoji">✅</span> <strong>KYC & Reviews</strong></li>
               <li><span className="emoji">📍</span> <strong>Geo-Based Matching</strong></li>
             </ul>
+            <div className="hero-auth-links">
+              <a className="hero-auth-link" href="#" onClick={e => { e.preventDefault(); setPage('login'); }}>Member Login</a>
+              <a className="hero-auth-link" href="#" onClick={e => { e.preventDefault(); setPage('login'); }}>Professional Login</a>
+            </div>
           </section>
         )}
         {page === 'about' && <About />}
         {page === 'login' && <Login onFlip={() => setPage('register')} />}
         {page === 'register' && <Register onFlip={() => setPage('login')} />}
       </main>
-      <div className="hero-auth-links">
-        <a className="hero-auth-link" href="#" onClick={e => { e.preventDefault(); setPage('login'); }}>Member Login</a>
-        <a className="hero-auth-link" href="#" onClick={e => { e.preventDefault(); setPage('login'); }}>Professional Login</a>
-      </div>
+      
       <div className="end-card-footer">
         Made with <span className="emoji">💚</span> for every generation
       </div>

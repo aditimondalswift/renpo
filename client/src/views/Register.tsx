@@ -35,7 +35,7 @@ const Register = ({ onFlip }: RegisterProps) => {
 
       if (response.status === 201) {
         console.log('User registered successfully');
-        onFlip(); // Call the onSuccess callback to navigate to the dashboard
+        onFlip();
       }
     } catch (error) {
       console.error('Error occurred during registration:', error);
@@ -43,9 +43,8 @@ const Register = ({ onFlip }: RegisterProps) => {
   };
 
   return (
-    <div className="auth-main-bg">
-      <div className="auth-container">
-        <div className="auth-image" aria-label="Healthcare" />
+    <div>
+      <div className="auth-container no-image">
         <div className="auth-form-panel">
           <h2>CareLink Registration</h2>
           <p>Create your account to manage care</p>
