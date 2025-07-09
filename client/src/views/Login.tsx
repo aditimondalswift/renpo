@@ -1,18 +1,16 @@
 import { useState } from 'react';
-import './../styles/Login.css';
+import './../styles/AuthFlipCard.css';
 
 interface LoginProps {
-  onRegister: () => void;
-  onSuccess: () => void;
+  onFlip: () => void;
 }
 
-
-const Login : React.FC<LoginProps> = ({ onRegister, onSuccess}) => {
+const Login = ({ onFlip }: LoginProps) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>
-) => {
+  ) => {
     e.preventDefault();
 
     try {
@@ -23,7 +21,7 @@ const Login : React.FC<LoginProps> = ({ onRegister, onSuccess}) => {
       });
 
       if (res.ok) {
-        onSuccess();
+        // Handle successful login (e.g., redirect or show dashboard)
       } else {
         const err = await res.json();
         alert(err.message || 'Invalid credentials');
@@ -34,32 +32,29 @@ const Login : React.FC<LoginProps> = ({ onRegister, onSuccess}) => {
     }
   };
 
-
-
   return (
-    <section className="login-section">
-      <div className="auth-card improved-auth-card">
-        <div className="auth-header">
-          <h2>Login</h2>
-        </div>
-        <div className="auth-body">
+    <div className="auth-main-bg login-bg-gradient">
+      <div className="auth-container no-image">
+        <div className="auth-form-panel">
+          <h2>CareLink Portal Login</h2>
+          <p>Access your healthcare management dashboard</p>
           <form className="login-form improved-form" onSubmit={handleSubmit}>
             <div className="form-group">
               <label htmlFor="login-email">Email</label>
-              <input 
-                id="login-email" 
-                type="email" 
-                placeholder="Enter your email" 
+              <input
+                id="login-email"
+                type="email"
+                placeholder="Enter your email"
                 value={email}
-                onChange={e => setEmail(e.target.value)} 
+                onChange={e => setEmail(e.target.value)}
                 required />
             </div>
             <div className="form-group">
               <label htmlFor="login-password">Password</label>
-              <input 
-                id="login-password" 
-                type="password" 
-                placeholder="Enter your password" 
+              <input
+                id="login-password"
+                type="password"
+                placeholder="Enter your password"
                 value={password}
                 onChange={e => setPassword(e.target.value)}
                 required />
@@ -70,7 +65,7 @@ const Login : React.FC<LoginProps> = ({ onRegister, onSuccess}) => {
               <button
                 type="button"
                 className="link-btn"
-                onClick={onRegister}
+                onClick={onFlip}
               >
                 Register
               </button>
@@ -78,7 +73,7 @@ const Login : React.FC<LoginProps> = ({ onRegister, onSuccess}) => {
           </form>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

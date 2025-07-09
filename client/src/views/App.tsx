@@ -1,20 +1,14 @@
 import { useState } from 'react'
 import '../styles/App.css'
-import Header from '../components/Header'
 import About from './About'
 import Login from './Login'
 import Register from './Register'
-import Dashboard from './Dashboard'
 
 function App() {
-  const [page, setPage] = useState<'home' | 'about' | 'login' | 'register' | 'dashboard'>('home')
+  const [page, setPage] = useState<'home' | 'about' | 'login' | 'register'>('home')
 
   return (
     <div className="app-container">
-      <Header
-        onNav={p => setPage(p)}
-        active={page === 'register' ? 'login' : page}
-      />
       <main>
         {page === 'home' && (
           <section className="hero-section">
@@ -35,19 +29,14 @@ function App() {
             </ul>
           </section>
         )}
-        {page === 'about' && (
-          <About />
-        )}
-        {page === 'login' && (
-          <Login onRegister={() => setPage('register')} onSuccess={() => setPage('dashboard')} />
-        )}
-        {page === 'register' && (
-          <Register onLogin={() => setPage('login')} onSuccess={() => setPage('dashboard')} />
-        )}
-        {page === 'dashboard' && 
-          <Dashboard />
-        }
+        {page === 'about' && <About />}
+        {page === 'login' && <Login onFlip={() => setPage('register')} />}
+        {page === 'register' && <Register onFlip={() => setPage('login')} />}
       </main>
+      <div className="hero-auth-links">
+        <a className="hero-auth-link" href="#" onClick={e => { e.preventDefault(); setPage('login'); }}>Member Login</a>
+        <a className="hero-auth-link" href="#" onClick={e => { e.preventDefault(); setPage('login'); }}>Professional Login</a>
+      </div>
       <div className="end-card-footer">
         Made with <span className="emoji">💚</span> for every generation
       </div>
