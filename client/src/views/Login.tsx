@@ -62,13 +62,7 @@ const Login = ({ onFlip }: LoginProps) => {
             <button className="primary-btn" type="submit">Login</button>
             <div className="switch-link">
               <span>Don't have an account?</span>
-              <button
-                type="button"
-                className="link-btn"
-                onClick={onFlip}
-              >
-                Register
-              </button>
+              <a href="#" onClick={e => { e.preventDefault(); onFlip(); }}>Register</a>
             </div>
           </form>
         </div>

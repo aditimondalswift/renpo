@@ -68,13 +68,10 @@ const Register = ({ onFlip }: RegisterProps) => {
             <button className="primary-btn" type="submit">Register</button>
             <div className="switch-link">
               <span>Already have an account?</span>
-              <button
-                type="button"
-                className="link-btn"
-                onClick={onFlip}
-              >
-                Login
-              </button>
+              
+                <a href="#" onClick={e => { e.preventDefault(); onFlip(); }}>
+                  Login
+                </a>
             </div>
           </form>
         </div>
